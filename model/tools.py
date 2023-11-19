@@ -9,10 +9,10 @@
 from PyQt5.QtCore import Qt, QPoint, QRect
 from PyQt5.QtGui import QPen, QColor, QIcon, QPixmap, QPainter
 
-import src.helpers.quickpixler as quickpixler
-import src.helpers.drawing as drawing
-import src.helpers.utils as utils
-from src.model.properties import PropertyHolder
+import helpers.quickpixler as quickpixler
+import helpers.drawing as drawing
+import helpers.utils as utils
+from model.properties import PropertyHolder
 
 
 class Tool(PropertyHolder):

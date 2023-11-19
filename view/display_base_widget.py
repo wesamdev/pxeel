@@ -14,9 +14,9 @@ from PyQt5.QtCore import Qt, QPoint, QRectF
 from PyQt5.QtGui import QPainter, QTransform
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene
 
-from src.view.display_sprite_object import DisplaySpriteObject
-from src.model.resources_cache import ResourcesCache
-import src.helpers.utils as utils
+from view.display_sprite_object import DisplaySpriteObject
+from model.resources_cache import ResourcesCache
+import helpers.utils as utils
 
 
 class Display(QGraphicsView):

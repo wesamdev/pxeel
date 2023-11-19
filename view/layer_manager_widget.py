@@ -12,8 +12,8 @@
 from PyQt5.QtCore import pyqtSignal, Qt, QRect
 from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QSizePolicy
 
-from src.view.draggable_list_base_widget import DraggableListWidget, ListItem
-import src.helpers.utils as utils
+from view.draggable_list_base_widget import DraggableListWidget, ListItem
+import helpers.utils as utils
 
 
 # -------------------------------------------------------------------------------------------------

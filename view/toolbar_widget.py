@@ -14,7 +14,7 @@ from PyQt5.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QButtonGroup, \
     QStackedWidget, QLabel, \
     QListWidget, QPushButton
 
-from src.model.resources_cache import ResourcesCache
+from model.resources_cache import ResourcesCache
 
 
 class ToolBar(QWidget):

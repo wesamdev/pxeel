@@ -12,19 +12,19 @@
 from PyQt5.QtCore import Qt, QEvent, pyqtSignal
 from PyQt5.QtGui import QPixmap, QPainter
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QDockWidget, QHBoxLayout
-from src.view.options_bar_widget import OptionsBar
+from view.options_bar_widget import OptionsBar
 
-from src.view.pixel_size_widget import PixelSizeWidget
-from src.view.toolbar_widget import ToolBar
+from view.pixel_size_widget import PixelSizeWidget
+from view.toolbar_widget import ToolBar
 from ui.mainwindow_ui import Ui_MainWindow
-from src.view.animation_display_widget import AnimationDisplay
-from src.view.canvas_widget import Canvas
-from src.view.color_picker_widget import ColorPicker
-from src.view.layer_manager_widget import LayerManager
-from src.view.new_sprite_dialog import NewSpriteDialog
-from src.view.animation_manager_widget import AnimationManager
-from src.model.resources_cache import ResourcesCache
-import src.model.appdata as app_data
+from view.animation_display_widget import AnimationDisplay
+from view.canvas_widget import Canvas
+from view.color_picker_widget import ColorPicker
+from view.layer_manager_widget import LayerManager
+from view.new_sprite_dialog import NewSpriteDialog
+from view.animation_manager_widget import AnimationManager
+from model.resources_cache import ResourcesCache
+import model.appdata as app_data
 
 
 # -------------------------------------------------------------------------------------------------

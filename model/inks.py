@@ -9,9 +9,9 @@
 # Licence:     <your licence>
 #--------------------------------------------------------------------------------------------------
 
-from src.model.properties import PropertyHolder
+from model.properties import PropertyHolder
 
-import src.helpers.drawing as drawing
+import helpers.drawing as drawing
 
 
 class Ink(PropertyHolder):

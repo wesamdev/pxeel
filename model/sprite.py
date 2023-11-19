@@ -13,10 +13,10 @@ import os
 from PyQt5.QtCore import QPoint, QSize
 from PyQt5.QtGui import QPainter
 
-import src.helpers.utils as utils
-import src.helpers.cropper as cropper
-import src.model.appdata as appdata
-from src.helpers.packer import RectanglePacker
+import helpers.utils as utils
+import helpers.cropper as cropper
+import model.appdata as appdata
+from helpers.packer import RectanglePacker
 
 
 class Sprite(object):

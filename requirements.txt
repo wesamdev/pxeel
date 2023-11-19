@@ -1,4 +1,4 @@
 PyQt5
 numpy
-cx-Freeze==6.5
+cx-Freeze
 cython

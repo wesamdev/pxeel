@@ -16,12 +16,12 @@ from PyQt5.QtCore import Qt, QFile, QIODevice, QCoreApplication
 from PyQt5.QtGui import QFontDatabase, QFont, QKeySequence, QColor, QPixmap
 from PyQt5.QtWidgets import QApplication, QDialog, QShortcut, QMessageBox, QStyle
 
-from src.model.application_settings import ApplicationSettings
-from src.view.main_window import MainWindow
-from src.model.sprite import Sprite
-from src.model.resources_cache import ResourcesCache
-import src.model.appdata as appdata
-import src.helpers.utils as utils
+from model.application_settings import ApplicationSettings
+from view.main_window import MainWindow
+from model.sprite import Sprite
+from model.resources_cache import ResourcesCache
+import model.appdata as appdata
+import helpers.utils as utils
 
 
 class Application(QApplication):

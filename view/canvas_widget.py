@@ -13,12 +13,12 @@ from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRect
 from PyQt5.QtGui import QColor, QPainter
 from PyQt5.QtWidgets import QVBoxLayout
 
-from src.view.canvas_overlay_object import CanvasOverlayObject
-from src.model import inks
-from src.view.display_base_widget import Display
-from src.view.display_sprite_object import DisplaySpriteObject
-import src.helpers.utils as utils
-from src.model import tools
+from view.canvas_overlay_object import CanvasOverlayObject
+from model import inks
+from view.display_base_widget import Display
+from view.display_sprite_object import DisplaySpriteObject
+import helpers.utils as utils
+from model import tools
 
 
 # ------------------------------------------------------------------------------

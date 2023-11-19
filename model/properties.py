@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QSpinBox
 
-from src.view.widgets import OnOffButton, Slider
+from view.widgets import OnOffButton, Slider
 
 
 class Property(object):

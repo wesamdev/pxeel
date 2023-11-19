@@ -13,7 +13,7 @@ from PyQt5.QtCore import Qt, QSize, QRect, QPoint, pyqtSignal
 from PyQt5.QtGui import QBrush, QPen, QPainter, QColor, QLinearGradient, QPolygon, QImage, QPixmap
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QSizePolicy
 
-import src.helpers.utils as utils
+import helpers.utils as utils
 
 
 ColorIndex = utils.enum('Primary', 'Secondary')
@@ -220,7 +220,8 @@ class ColorRamp:
             new_sat = max(0, min(255, new_sat))
             new_val = max(0, min(255, new_val))
 
-            self._colArray[i] = (QColor.fromHsv(self._hueArray[i], new_sat, new_val))
+           # self._colArray[i] = (QColor.fromHsv(self._hueArray[i], new_sat, new_val))
+            QColor.fromHsv(self._hueArray[i], int(new_sat), int(new_val))
 
         first_color = self._colArray[15]
         last_color = self._colArray[0]
