@@ -14,11 +14,13 @@ if sys.platform == 'win32':
 exe = Executable(
     script='src/application.py',
     base=base,
+    targetName = "Pxlee.exe"
 )
 
 options = {
     'build_exe' : {
         'excludes' : ['curses', 'email', 'tcl', 'ttk', 'tkinter'],
+        'compressed' : True,
         'packages': ['numpy.lib.format']
     }
 }
