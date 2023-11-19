@@ -14,7 +14,6 @@ if sys.platform == 'win32':
 exe = Executable(
     script='src/application.py',
     base=base,
-    targetName = "Pxlee.exe"
 )
 
 options = {
