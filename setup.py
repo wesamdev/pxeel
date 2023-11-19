@@ -5,7 +5,6 @@ from cx_Freeze import setup, Executable
 
 
 base = None
-targetName = 'Spritemator.exe'
 
 
 if sys.platform == 'win32':
@@ -15,7 +14,7 @@ if sys.platform == 'win32':
 exe = Executable(
     script='src/application.py',
     base=base,
-    targetName = targetName
+    targetName = "Pxlee.exe"
 )
 
 options = {
@@ -29,8 +28,8 @@ options = {
 
 
 setup(
-    name="Spritemator",
-    version="0.6",
+    name="Pxlee",
+    version="0.1",
     description="A Sprite editor and animator",
     executables=[exe],
     options=options, requires=['PyQt5', 'PIL', 'numpy']
