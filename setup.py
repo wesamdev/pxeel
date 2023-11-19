@@ -19,7 +19,6 @@ exe = Executable(
 options = {
     'build_exe' : {
         'excludes' : ['curses', 'email', 'tcl', 'ttk', 'tkinter'],
-        'compressed' : True,
         'packages': ['numpy.lib.format']
     }
 }
