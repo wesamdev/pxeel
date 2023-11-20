@@ -114,36 +114,72 @@ class DisplaySpriteObject(QGraphicsItem):
         self.prepareGeometryChange()
         self._boundingRect = QRectF()
 
-    def paint(self, painter, option, widget=None):
+    # def paint(self, painter, option, widget=None):
 
+    #     painter.setClipRect(option.exposedRect)
+
+    #     if self._backgroundPixmap is not None:
+    #         painter.drawTiledPixmap(option.rect, self._backgroundPixmap)
+
+    #     if self._sprite is not None:
+
+    #         frame_index = self._displayFrameIndex \
+    #             if self._displayFrameIndex != -1 \
+    #             else self._sprite.current_animation.current_frame_index
+
+    #         if self._enableOnionSkin:
+
+    #             last_frame_index = frame_index - 1
+
+    #             if last_frame_index >= 0:
+
+    #                 last_frame_layers = self._sprite.current_animation. \
+    #                     frame_at(last_frame_index).surfaces
+
+    #                 painter.setOpacity(0.2)
+
+    #                 for layer in last_frame_layers:
+    #                     painter.drawImage(option.rect, layer.image)
+
+    #                 painter.setOpacity(1.0)
+
+    #         layers = self._sprite.current_animation.frame_at(frame_index).surfaces
+
+    #         for layer in layers:
+    #             painter.drawImage(option.rect, layer.image)
+
+    def paint(self, painter, option, widget=None):
         painter.setClipRect(option.exposedRect)
 
         if self._backgroundPixmap is not None:
             painter.drawTiledPixmap(option.rect, self._backgroundPixmap)
 
         if self._sprite is not None:
+            frame_count = len(self._sprite.current_animation.frames)
 
-            frame_index = self._displayFrameIndex \
-                if self._displayFrameIndex != -1 \
+            frame_index = (
+                self._displayFrameIndex
+                if self._displayFrameIndex != -1
                 else self._sprite.current_animation.current_frame_index
+            )
 
-            if self._enableOnionSkin:
+            if 0 <= frame_index < frame_count:
+                if self._enableOnionSkin:
+                    last_frame_index = frame_index - 1
 
-                last_frame_index = frame_index - 1
+                    if 0 <= last_frame_index < frame_count:
+                        last_frame_layers = self._sprite.current_animation.frame_at(
+                            last_frame_index
+                        ).surfaces
 
-                if last_frame_index >= 0:
+                        painter.setOpacity(0.2)
 
-                    last_frame_layers = self._sprite.current_animation. \
-                        frame_at(last_frame_index).surfaces
+                        for layer in last_frame_layers:
+                            painter.drawImage(option.rect, layer.image)
 
-                    painter.setOpacity(0.2)
+                        painter.setOpacity(1.0)
 
-                    for layer in last_frame_layers:
-                        painter.drawImage(option.rect, layer.image)
+                layers = self._sprite.current_animation.frame_at(frame_index).surfaces
 
-                    painter.setOpacity(1.0)
-
-            layers = self._sprite.current_animation.frame_at(frame_index).surfaces
-
-            for layer in layers:
-                painter.drawImage(option.rect, layer.image)
+                for layer in layers:
+                    painter.drawImage(option.rect, layer.image)

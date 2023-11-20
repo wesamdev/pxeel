@@ -35,8 +35,12 @@ class LayerListItem(ListItem):
 
         # Draw Icon
 
+        # icon_draw_area = QRect(draw_area.right() - 55,
+        #                        draw_area.top() + draw_area.height() / 2 - 24, 48, 48)
+
         icon_draw_area = QRect(draw_area.right() - 55,
-                               draw_area.top() + draw_area.height() / 2 - 24, 48, 48)
+                            int(draw_area.top() + draw_area.height() / 2 - 24), 48, 48)
+
 
         border = self._borderColor if not self._selected else self._borderColorSelected
 
@@ -103,23 +107,40 @@ class LayerManager(QWidget):
 
         self.update()
 
-    def rebuild(self):
+    # def rebuild(self):
 
+    #     if self._sprite is None:
+    #         return
+
+    #     frame = self._sprite.current_animation.current_frame
+
+    #     self._listWidget.clear()
+
+    #     for surface in frame.surfaces:
+    #         layer_item = LayerListItem(self._listWidget, surface)
+
+    #         self._listWidget.add_item(layer_item)
+
+    #     self._listWidget.selected_index = frame.current_surface_index
+
+    #     self.update()
+    def rebuild(self):
         if self._sprite is None:
             return
 
         frame = self._sprite.current_animation.current_frame
 
-        self._listWidget.clear()
+        if frame is not None:  # Add this check to ensure frame is not None
+            self._listWidget.clear()
 
-        for surface in frame.surfaces:
-            layer_item = LayerListItem(self._listWidget, surface)
+            for surface in frame.surfaces:
+                layer_item = LayerListItem(self._listWidget, surface)
+                self._listWidget.add_item(layer_item)
 
-            self._listWidget.add_item(layer_item)
+            self._listWidget.selected_index = frame.current_surface_index
 
-        self._listWidget.selected_index = frame.current_surface_index
+            self.update()
 
-        self.update()
 
     def set_layer(self, index):
 

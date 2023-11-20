@@ -124,18 +124,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.centralWidget().setVisible(False)
         self._workspaceVisible = False
 
-    def paintEvent(self, e):
+    # def paintEvent(self, e):
 
+    #     if not self._workspaceVisible:
+    #         p = QPainter(self)
+
+    #         x = self.width() / 2 - self._logo.width() / 2
+    #         y = self.height() / 2 - self._logo.height() / 2
+
+    #         p.drawPixmap(x, y, self._logo)
+
+    #         p.drawText(x + 50, y + 200,
+    #                    '.:: SpriteMator ::. | Version: %s' % app_data.meta['VERSION'])
+
+    def paintEvent(self, e):
         if not self._workspaceVisible:
             p = QPainter(self)
-
-            x = self.width() / 2 - self._logo.width() / 2
-            y = self.height() / 2 - self._logo.height() / 2
-
+            x = int(self.width() / 2 - self._logo.width() / 2)
+            y = int(self.height() / 2 - self._logo.height() / 2)
             p.drawPixmap(x, y, self._logo)
+            p.drawText(x + 50, y + 200, '.:: SpriteMator ::. | Version: %s' % app_data.meta['VERSION'])
 
-            p.drawText(x + 50, y + 200,
-                       '.:: SpriteMator ::. | Version: %s' % app_data.meta['VERSION'])
 
     def eventFilter(self, target, event):
 

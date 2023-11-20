@@ -276,7 +276,8 @@ class Pen(Tool):
 
         else:
 
-            painter.drawRect(x - size / 2, y - size / 2, size, size)
+            painter.drawRect(int(x - size / 2), int(y - size / 2), int(size), int(size))
+            # painter.drawRect(x - size / 2, y - size / 2, size, size)
             painter.drawLine(x - 2, y, x + 2, y)
             painter.drawLine(x, y - 2, x, y + 2)
 
@@ -335,6 +336,10 @@ class Pen(Tool):
             self._canvas.surfaceChanging.emit()
 
             painter.end()
+
+
+
+
 
     def on_mouse_press(self):
 

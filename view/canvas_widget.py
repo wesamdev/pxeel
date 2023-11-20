@@ -334,10 +334,16 @@ class Canvas(Display):
 
         self._mouseState.canvas_pos = self.mapToScene(e.pos())
 
-        self._mouseState.sprite_pos.setX(
-            self._mouseState.canvas_pos.x() - self._spriteObject.boundingRect().left())
-        self._mouseState.sprite_pos.setY(
-            self._mouseState.canvas_pos.y() - self._spriteObject.boundingRect().top())
+        # self._mouseState.sprite_pos.setX(
+        #     self._mouseState.canvas_pos.x() - self._spriteObject.boundingRect().left())
+        self._mouseState.sprite_pos.setX(int(
+            self._mouseState.canvas_pos.x() - self._spriteObject.boundingRect().left()))
+
+        # self._mouseState.sprite_pos.setY(
+        #     self._mouseState.canvas_pos.y() - self._spriteObject.boundingRect().top())
+        self._mouseState.sprite_pos.setX(int(
+            self._mouseState.canvas_pos.x() - self._spriteObject.boundingRect().left()))
+                
 
         self._mouseState.pressed_button = e.button()
 
@@ -345,11 +351,11 @@ class Canvas(Display):
             self._mouseState.sprite_pos = utils.snap_point(self._mouseState.sprite_pos,
                                                            self._pixelSize)
 
-        self._mouseState.last_canvas_pos.setX(self._mouseState.canvas_pos.x())
-        self._mouseState.last_canvas_pos.setY(self._mouseState.canvas_pos.y())
+        self._mouseState.last_canvas_pos.setX(int(self._mouseState.canvas_pos.x()))
+        self._mouseState.last_canvas_pos.setY(int(self._mouseState.canvas_pos.y()))
 
-        self._mouseState.last_sprite_pos.setX(self._mouseState.sprite_pos.x())
-        self._mouseState.last_sprite_pos.setY(self._mouseState.sprite_pos.y())
+        self._mouseState.last_sprite_pos.setX(int(self._mouseState.sprite_pos.x()))
+        self._mouseState.last_sprite_pos.setY(int(self._mouseState.sprite_pos.y()))
 
         self._currentTool.on_mouse_press()
 
@@ -371,8 +377,10 @@ class Canvas(Display):
 
         canvas_pos = self._mouseState.canvas_pos = self.mapToScene(e.pos())
 
-        self._mouseState.sprite_pos.setX(canvas_pos.x() - self._spriteObject.boundingRect().left())
-        self._mouseState.sprite_pos.setY(canvas_pos.y() - self._spriteObject.boundingRect().top())
+        # self._mouseState.sprite_pos.setX(canvas_pos.x() - self._spriteObject.boundingRect().left())
+        # self._mouseState.sprite_pos.setY(canvas_pos.y() - self._spriteObject.boundingRect().top())
+        self._mouseState.sprite_pos.setX(int(canvas_pos.x() - self._spriteObject.boundingRect().left()))
+        self._mouseState.sprite_pos.setY(int(canvas_pos.y() - self._spriteObject.boundingRect().top()))
 
         if self._pixelSize > 1 and self._snapEnabled:
             self._mouseState.sprite_pos = utils.snap_point(self._mouseState.sprite_pos,
@@ -382,8 +390,8 @@ class Canvas(Display):
 
         self._currentTool.on_mouse_move()
 
-        self._mouseState.last_canvas_pos.setX(canvas_pos.x())
-        self._mouseState.last_canvas_pos.setY(canvas_pos.y())
+        self._mouseState.last_canvas_pos.setX(int(canvas_pos.x()))
+        self._mouseState.last_canvas_pos.setY(int(canvas_pos.y()))
 
         self._mouseState.last_sprite_pos.setX(self._mouseState.sprite_pos.x())
         self._mouseState.last_sprite_pos.setY(self._mouseState.sprite_pos.y())

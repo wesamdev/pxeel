@@ -44,7 +44,7 @@ class FrameStrip(QWidget):
         self._pen = QPen(QColor(0, 179, 255))
         self._pen.setCapStyle(Qt.SquareCap)
         self._pen.setJoinStyle(Qt.MiterJoin)
-        self._pen.setWidth(4.0)
+        self._pen.setWidth(4)
 
         self.setContentsMargins(0, 0, 0, 0)
 
@@ -386,7 +386,7 @@ class AnimationManager(QWidget):
         if self._sprite is None:
             return
 
-        self._sprite.addAnimation()
+        self._sprite.add_animation()
 
         self._update_animation_combo()
 
@@ -400,7 +400,7 @@ class AnimationManager(QWidget):
         if self._sprite is None:
             return
 
-        self._sprite.removecurrent_animation()
+        self._sprite.remove_current_animation()
 
         self._update_animation_combo()
 

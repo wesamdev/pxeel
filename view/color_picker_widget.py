@@ -92,7 +92,10 @@ class ColorBox(QWidget):
 
         paint_rect = e.rect()
 
-        half_width = paint_rect.width() / 2
+        # half_width = paint_rect.width() / 2
+        # paint_rect.adjust(0, 0, -half_width, -2)
+
+        half_width = int(paint_rect.width() / 2)
         paint_rect.adjust(0, 0, -half_width, -2)
 
         if self._primaryColor:
@@ -107,7 +110,8 @@ class ColorBox(QWidget):
 
         if self._secondaryColor:
 
-            second_box_rect = paint_rect.translated(half_width, 0)
+            # second_box_rect = paint_rect.translated(half_width, 0)
+            second_box_rect = paint_rect.translated(int(half_width), 0)
 
             if self._primaryColor.alpha() < 255:
                 p.drawTiledPixmap(second_box_rect, self._background)
@@ -220,8 +224,7 @@ class ColorRamp:
             new_sat = max(0, min(255, new_sat))
             new_val = max(0, min(255, new_val))
 
-           # self._colArray[i] = (QColor.fromHsv(self._hueArray[i], new_sat, new_val))
-            QColor.fromHsv(self._hueArray[i], int(new_sat), int(new_val))
+            self._colArray[i] = QColor.fromHsv(self._hueArray[i], int(new_sat), int(new_val))
 
         first_color = self._colArray[15]
         last_color = self._colArray[0]
@@ -429,10 +432,15 @@ class ColorPalette(QWidget):
 
         cell_rect = self._cell_rect(self._selectedCellA2.index)
 
-        p.drawRect(cell_rect.adjusted(border_adjust,
-                                      border_adjust,
-                                      -border_adjust,
-                                      -border_adjust))
+        # p.drawRect(cell_rect.adjusted(border_adjust,
+        #                               border_adjust,
+        #                               -border_adjust,
+        #                               -border_adjust))
+
+        p.drawRect(cell_rect.adjusted(int(border_adjust),
+                                    int(border_adjust),
+                                    -int(border_adjust),
+                                    -int(border_adjust)))
 
         # PAINT SELECTED CELL B
 
@@ -441,10 +449,14 @@ class ColorPalette(QWidget):
 
         cell_rect = self._cell_rect(self._selectedCellB2.index)
 
-        p.drawRect(cell_rect.adjusted(border_adjust,
-                                      border_adjust,
-                                      -border_adjust,
-                                      -border_adjust))
+        # p.drawRect(cell_rect.adjusted(border_adjust,
+        #                               border_adjust,
+        #                               -border_adjust,
+        #                               -border_adjust))
+        p.drawRect(cell_rect.adjusted(int(border_adjust),
+                                    int(border_adjust),
+                                    -int(border_adjust),
+                                    -int(border_adjust)))
 
     def leaveEvent(self, e):
 
