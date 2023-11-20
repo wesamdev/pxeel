@@ -1,7 +1,6 @@
-SpriteMator
+Pxeel
 ============
 
-Obs: Unmaintained :) Kept here in hope of being of value for others and of course for myself :)
 
 ------------
 ( I'm addicted to coding sprite editors and stuff :) )
