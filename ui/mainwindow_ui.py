@@ -192,7 +192,7 @@ class Ui_MainWindow(object):
 
         _translate = QCoreApplication.translate
 
-        main_window.setWindowTitle(_translate("MainWindow", "SpriteMator"))
+        main_window.setWindowTitle(_translate("MainWindow", "Pxeel"))
         self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
 
         self.actionNew.setText(_translate("MainWindow", "New"))

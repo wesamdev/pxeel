@@ -44,9 +44,9 @@ class Application(QApplication):
 
         super(Application, self).__init__(args)
 
-        QCoreApplication.setOrganizationName("Rafael Vasco")
-        QCoreApplication.setOrganizationDomain("rafaelvasco.com")
-        QCoreApplication.setApplicationName("SpriteMator")
+        QCoreApplication.setOrganizationName("FriendSDev team")
+        QCoreApplication.setOrganizationDomain("wesam.pages.dev")
+        QCoreApplication.setApplicationName("Pxeel")
 
         logging.basicConfig(
 

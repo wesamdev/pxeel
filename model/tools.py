@@ -182,7 +182,7 @@ class Picker(Tool):
 
         else:
 
-            rect = QRect(x - size / 2, y - size / 2, size, size)
+            rect = QRect(int(x - size / 2), int(y - size / 2), int(size), int(size))
             painter.drawRect(rect)
 
             rect.adjust(2, 2, -2, -2)
@@ -452,7 +452,7 @@ class Filler(Tool):
 
         else:
 
-            rect = QRect(x - size / 2, y - size / 2, size, size)
+            rect = QRect(int(x - size / 2), int(y - size / 2), int(size), int(size))
             painter.drawRect(rect)
 
             rect.adjust(2, 2, -2, -2)
@@ -560,38 +560,61 @@ class Manipulator(Tool):
 
             print('Selection Rect Draw')
 
-    def draw_untransformed(self, painter):
+    # def draw_untransformed(self, painter):
 
+    #     canvas = self._canvas
+
+    #     x = canvas.mouse_state.global_pos.x() + 1
+    #     y = canvas.mouse_state.global_pos.y() + 1
+
+    #     if self._enablePointerDraw and self._state == ManipulatorState.Idle \
+    #             or self._state == ManipulatorState.MovingSelection \
+    #             or self._state == ManipulatorState.MovingPixels:
+    #         painter.drawPixmap(x - self._cursor.width() / 2, y -
+    #                            self._cursor.height() / 2, self._cursor)
+
+    def draw_untransformed(self, painter):
         canvas = self._canvas
 
-        x = canvas.mouse_state.global_pos.x() + 1
-        y = canvas.mouse_state.global_pos.y() + 1
+        x = int(canvas.mouse_state.global_pos.x() + 1)
+        y = int(canvas.mouse_state.global_pos.y() + 1)
 
         if self._enablePointerDraw and self._state == ManipulatorState.Idle \
                 or self._state == ManipulatorState.MovingSelection \
                 or self._state == ManipulatorState.MovingPixels:
-            painter.drawPixmap(x - self._cursor.width() / 2, y -
-                               self._cursor.height() / 2, self._cursor)
+            painter.drawPixmap(x - int(self._cursor.width() / 2), y - int(self._cursor.height() / 2), self._cursor)
 
     def update(self):
         self._animate_selection_border()
 
-    def on_mouse_press(self):
+    # def on_mouse_press(self):
 
+    #     super(Manipulator, self).on_mouse_press()
+
+    #     canvas = self._canvas
+
+    #     button = canvas.mouse_state.pressed_button
+    #     mouse_pos = canvas.mouse_state.canvas_pos
+
+    #     self._lastMousePos.setX(mouse_pos.x())
+    #     self._lastMousePos.setY(mouse_pos.y())
+    #     self._curMousePos.setX(mouse_pos.x())
+    #     self._curMousePos.setY(mouse_pos.y())
+    #     self._pressMousePos.setX(mouse_pos.x())
+        #     self._pressMousePos.setY(mouse_pos.y())
+    def on_mouse_press(self):
         super(Manipulator, self).on_mouse_press()
 
         canvas = self._canvas
-
         button = canvas.mouse_state.pressed_button
         mouse_pos = canvas.mouse_state.canvas_pos
 
-        self._lastMousePos.setX(mouse_pos.x())
-        self._lastMousePos.setY(mouse_pos.y())
-        self._curMousePos.setX(mouse_pos.x())
-        self._curMousePos.setY(mouse_pos.y())
-        self._pressMousePos.setX(mouse_pos.x())
-        self._pressMousePos.setY(mouse_pos.y())
-
+        self._lastMousePos.setX(round(mouse_pos.x()))
+        self._lastMousePos.setY(round(mouse_pos.y()))
+        self._curMousePos.setX(round(mouse_pos.x()))
+        self._curMousePos.setY(round(mouse_pos.y()))
+        self._pressMousePos.setX(round(mouse_pos.x()))
+        self._pressMousePos.setY(round(mouse_pos.y()))
         if button == Qt.LeftButton:
 
             if self._selectionRectangle.isEmpty():
@@ -622,21 +645,19 @@ class Manipulator(Tool):
             self._state = ManipulatorState.Selecting
 
     def on_mouse_move(self):
-
         canvas = self._canvas
-
         mouse_pos = canvas.mouse_state.canvas_pos
 
         if self._state == ManipulatorState.MovingPixels:
+            self._lastMousePos.setX(round(self._curMousePos.x()))
+            self._lastMousePos.setY(round(self._curMousePos.y()))
 
-            self._lastMousePos.setX(self._curMousePos.x())
-            self._lastMousePos.setY(self._curMousePos.y())
-
-            self._curMousePos.setX(mouse_pos.x())
-            self._curMousePos.setY(mouse_pos.y())
+            self._curMousePos.setX(round(mouse_pos.x()))
+            self._curMousePos.setY(round(mouse_pos.y()))
 
             dx = self._curMousePos.x() - self._lastMousePos.x()
             dy = self._curMousePos.y() - self._lastMousePos.y()
+
 
             image = canvas.sprite_object.active_surface
 
@@ -652,9 +673,8 @@ class Manipulator(Tool):
                 self._canvas.surfaceChanging.emit()
 
         elif self._state == ManipulatorState.Selecting:
-
-            top_left = QPoint(min(mouse_pos.x(), self._pressMousePos.x()),
-                              min(mouse_pos.y(), self._pressMousePos.y()))
+            top_left = QPoint(round(min(mouse_pos.x(), self._pressMousePos.x())),
+                            round(min(mouse_pos.y(), self._pressMousePos.y())))
 
             width = abs(mouse_pos.x() - self._pressMousePos.x())
             height = abs(mouse_pos.y() - self._pressMousePos.y())
@@ -663,12 +683,11 @@ class Manipulator(Tool):
                                              width, height)
 
         elif self._state == ManipulatorState.MovingSelection:
+            self._lastMousePos.setX(round(self._curMousePos.x()))
+            self._lastMousePos.setY(round(self._curMousePos.y()))
 
-            self._lastMousePos.setX(self._curMousePos.x())
-            self._lastMousePos.setY(self._curMousePos.y())
-
-            self._curMousePos.setX(mouse_pos.x())
-            self._curMousePos.setY(mouse_pos.y())
+            self._curMousePos.setX(round(mouse_pos.x()))
+            self._curMousePos.setY(round(mouse_pos.y()))
 
             dx = self._curMousePos.x() - self._lastMousePos.x()
             dy = self._curMousePos.y() - self._lastMousePos.y()

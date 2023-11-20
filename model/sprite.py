@@ -38,7 +38,15 @@ class Sprite(object):
 
     @property
     def active_surface(self):
-        return self.current_animation.current_frame.current_surface.image
+        if (
+            self.current_animation
+            and self.current_animation.current_frame
+            and self.current_animation.current_frame.current_surface
+            and self.current_animation.current_frame.current_surface.image
+        ):
+            return self.current_animation.current_frame.current_surface.image
+        else:
+            return None
 
     @property
     def active_surface_pixel_data(self):
